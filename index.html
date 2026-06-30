@@ -130,13 +130,6 @@ display: block;
     console.log("Kunde inte hämta kurs, använder gammal");
   }
 }
-    amount.addEventListener("focus", () => {
-  amount.placeholder = "";
-});
-
-amount.addEventListener("blur", () => {
-  amount.placeholder = "Skriv belopp...";
-});
 
     input.addEventListener("input", update);
   </script>
