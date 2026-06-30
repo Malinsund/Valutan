@@ -120,5 +120,10 @@ display:block;
 
     input.addEventListener("input", update);
   </script>
+  <script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js");
+  }
+</script>
 </body>
 </html>
