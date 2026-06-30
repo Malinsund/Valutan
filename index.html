@@ -1,1 +1,124 @@
-<!DOCTYPE html><html lang="sv"><head>  <meta charset="UTF-8">  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  <title>ALL ↔ SEK</title>  <style>    body {      margin: 0;      font-family: Arial, sans-serif;        background: url("malissa2.jpg") no-repeat center center fixed;  background-size: cover;      color: White;      display: flex;      justify-content: center;            height: 100vh;    }    .app {      width: 100%;      max-width: 400px;      padding: 20px;    }    h1 {      text-align: center;      font-size: 22px;      margin-bottom: 20px;    }h2 {text-align: center;margin-bottom: 20px;}    input {      width: 80%;      font-size: 28px;      padding: 12px;      text-align: center;      border: 2px solid #ddd;      border-radius: 10px;display: block;margin: 0 auto;    }    .result {      margin-top: 20px;      font-size: 26px;      text-align: center;      font-weight: bold;    }    .rate {      margin-top: 10px;      text-align: center;      opacity: 0.7;    }    button {      margin-top: 20px;margin: auto;      width: 80%;      padding: 12px;      font-size: 16px;      border: none;      border-radius: 10px;      background: #111;      color: white;display:block;    }  </style></head><body>  <div class="app"><h2>Malles valuta omvandlare</h2>    <h1>🇦🇱 ALL ↔ 🇸🇪 SEK</h1>    <input id="input" type="number" placeholder="Skriv belopp..." />    <div class="result" id="result">≈ 0 SEK</div>    <div class="rate">1 SEK = 9.10 ALL</div>    <button onclick="toggle()">Byt riktning</button>  </div>  <script>    let direction = "ALL_TO_SEK";    const rate = 9.10;    const input = document.getElementById("input");    const result = document.getElementById("result");    function update() {      const value = Number(input.value) || 0;      if (direction === "ALL_TO_SEK") {        const sek = value / rate;        result.textContent = "≈ " + sek.toFixed(2) + " SEK";      } else {        const all = value * rate;        result.textContent = "≈ " + all.toFixed(2) + " ALL";      }    }    function toggle() {      direction = direction === "ALL_TO_SEK" ? "SEK_TO_ALL" : "ALL_TO_SEK";      update();    }    input.addEventListener("input", update);  </script></body></html>
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#111111">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ALL ↔ SEK</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+        background: url("malissa2.jpg") no-repeat center center fixed;
+  background-size: cover;
+      color: White;
+      display: flex;
+      justify-content: center;
+      
+      height: 100vh;
+
+    }
+
+    .app {
+      width: 100%;
+      max-width: 400px;
+      padding: 20px;
+
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+h2 {
+text-align: center;
+margin-bottom: 20px;
+}
+
+    input {
+      width: 80%;
+
+      font-size: 28px;
+      padding: 12px;
+      text-align: center;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+display: block;
+margin: 0 auto;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 26px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .rate {
+      margin-top: 10px;
+      text-align: center;
+      opacity: 0.7;
+    }
+
+    button {
+      margin-top: 20px;
+margin: auto;
+      width: 80%;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      background: #111;
+      color: white;
+display:block;
+
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+<h2>Malles valuta omvandlare</h2>
+    <h1>🇦🇱 ALL ↔ 🇸🇪 SEK</h1>
+
+    <input id="input" type="number" placeholder="Skriv belopp..." />
+
+    <div class="result" id="result">≈ 0 SEK</div>
+
+    <div class="rate">1 SEK = 9.10 ALL</div>
+
+    <button onclick="toggle()">Byt riktning</button>
+  </div>
+
+  <script>
+    let direction = "ALL_TO_SEK";
+    const rate = 9.10;
+
+    const input = document.getElementById("input");
+    const result = document.getElementById("result");
+
+    function update() {
+      const value = Number(input.value) || 0;
+
+      if (direction === "ALL_TO_SEK") {
+        const sek = value / rate;
+        result.textContent = "≈ " + sek.toFixed(2) + " SEK";
+      } else {
+        const all = value * rate;
+        result.textContent = "≈ " + all.toFixed(2) + " ALL";
+      }
+    }
+
+    function toggle() {
+      direction = direction === "ALL_TO_SEK" ? "SEK_TO_ALL" : "ALL_TO_SEK";
+      update();
+    }
+
+    input.addEventListener("input", update);
+  </script>
+</body>
+</html>
