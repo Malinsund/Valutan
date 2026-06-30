@@ -124,10 +124,12 @@ if (value === null) {
     
  async function fetchRate() {
   try {
-    const res = await fetch("https://api.exchangerate.host/latest?base=SEK&symbols=ALL");
+    const res = await fetch("https://api.fxratesapi.com/latest?base=SEK&currencies=ALL");
     const data = await res.json();
 
     const sekToAll = data.rates.ALL;
+
+    if (!sekToAll) throw new Error("Ingen kurs hittades");
 
     rate = sekToAll;
 
@@ -135,9 +137,9 @@ if (value === null) {
 
     update();
 
-    console.log("Ny kurs hämtad:", sekToAll);
+    console.log("NY KURS:", sekToAll);
   } catch (e) {
-    console.log("Kunde inte hämta kurs, använder gammal");
+    console.log("API fail → fallback 10 används", e);
   }
 }
 
