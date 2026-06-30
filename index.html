@@ -94,36 +94,41 @@ display: block;
 
   <script>
     let direction = "ALL_TO_SEK";
-    const rate = 9.10;
+    let rate = 10;
 
     const input = document.getElementById("input");
     const result = document.getElementById("result");
+    const rateText = document.querySelector(".rate");
 
-    function update() {
-      const value = Number(input.value) || 0;
+   function update() {
+  const value = Number(input.value) || 0;
 
-      if (direction === "ALL_TO_SEK") {
-        const sek = value / rate;
-        result.textContent = "≈ " + sek.toFixed(2) + " SEK";
-      } else {
-        const all = value * rate;
-        result.textContent = "≈ " + all.toFixed(2) + " ALL";
-      }
-    }
+  if (direction === "ALL_TO_SEK") {
+    const sek = value / rate;
+    result.textContent = "≈ " + sek.toFixed(2) + " SEK";
+  } else {
+    const all = value * rate;
+    result.textContent = "≈ " + all.toFixed(2) + " ALL";
+  }
+}
 
     function toggle() {
       direction = direction === "ALL_TO_SEK" ? "SEK_TO_ALL" : "ALL_TO_SEK";
       update();
     }
-    async function fetchRate() {
+    
+ async function fetchRate() {
   try {
     const res = await fetch("https://api.exchangerate.host/latest?base=SEK&symbols=ALL");
     const data = await res.json();
 
     const sekToAll = data.rates.ALL;
 
-    // uppdatera din kurs
-    window.currentRate = sekToAll;
+    rate = sekToAll;
+
+    rateText.textContent = `1 SEK = ${rate.toFixed(2)} ALL`;
+
+    update();
 
     console.log("Ny kurs hämtad:", sekToAll);
   } catch (e) {
@@ -132,6 +137,7 @@ display: block;
 }
 
     input.addEventListener("input", update);
+    fetchRate();
   </script>
   <script>
   if ("serviceWorker" in navigator) {
