@@ -117,6 +117,21 @@ display:block;
       direction = direction === "ALL_TO_SEK" ? "SEK_TO_ALL" : "ALL_TO_SEK";
       update();
     }
+    async function fetchRate() {
+  try {
+    const res = await fetch("https://api.exchangerate.host/latest?base=SEK&symbols=ALL");
+    const data = await res.json();
+
+    const sekToAll = data.rates.ALL;
+
+    // uppdatera din kurs
+    window.currentRate = sekToAll;
+
+    console.log("Ny kurs hämtad:", sekToAll);
+  } catch (e) {
+    console.log("Kunde inte hämta kurs, använder gammal");
+  }
+}
 
     input.addEventListener("input", update);
   </script>
