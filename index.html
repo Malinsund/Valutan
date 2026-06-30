@@ -101,6 +101,7 @@ display: block;
     const rateText = document.querySelector(".rate");
 
    function update() {
+     console.log("UPDATE KÖRS");
   const value = input.value === "" ? null : Number(input.value);
 if (value === null) {
   result.textContent = "≈ 0";
