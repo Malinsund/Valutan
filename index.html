@@ -101,7 +101,11 @@ display: block;
     const rateText = document.querySelector(".rate");
 
    function update() {
-  const value = Number(input.value) || 0;
+  const value = input.value === "" ? null : Number(input.value);
+if (value === null) {
+  result.textContent = "≈ 0";
+  return;
+}
 
   if (direction === "ALL_TO_SEK") {
     const sek = value / rate;
